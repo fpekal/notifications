@@ -2,12 +2,12 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs";
 		server = {
-			url = "./server";
+			url = "path:./server";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
 		client = {
-			url = "./client";
+			url = "path:./client";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
