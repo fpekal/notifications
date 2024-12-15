@@ -42,21 +42,20 @@ private:
 			struct sockaddr_in client_address;
 			socklen_t client_address_size = sizeof(client_address);
 			int client_socket_fd = accept(socket_fd, (struct sockaddr*)&client_address, &client_address_size);
-			auto finished_atomic = std::make_shared<std::atomic<bool>>(false);
-			std::jthread client_thread = std::jthread(&tcp_server::client_thread_func, this, client_socket_fd, finished_atomic);
+			auto finished_flag = std::make_shared<bool>(false);
+			std::jthread client_thread = std::jthread(&tcp_server::client_thread_func, this, client_socket_fd, finished_flag);
 			client_mutex.lock();
-			clients.emplace_back(finished_atomic, std::move(client_thread));
+			clients.emplace_back(finished_flag, std::move(client_thread));
 			client_mutex.unlock();
 		}
 	}
 
-	void client_thread_func(int client_socket_fd, std::shared_ptr<std::atomic<bool>> finished_atomic) {
+	void client_thread_func(int client_socket_fd, std::shared_ptr<bool> finished_flag) {
 		func(client_socket_fd);
 		close(client_socket_fd);
 
-		finished_atomic->store(true);
-
 		client_mutex.lock();
+		*finished_flag = true;
 		finished = true;
 		client_cv.notify_one();
 		client_mutex.unlock();
@@ -68,8 +67,8 @@ private:
 			client_cv.wait(lock, [this] { return finished; });
 			finished = false;
 
-			std::erase_if(clients, [](const std::pair<std::shared_ptr<std::atomic<bool>>, std::jthread>& client) {
-				return client.first->load();
+			std::erase_if(clients, [](const std::pair<std::shared_ptr<bool>, std::jthread>& client) {
+				return *client.first;
 			});
 		}
 	}
@@ -80,7 +79,7 @@ private:
 	int socket_fd;
 	std::jthread listen_thread;
 	std::jthread cleanup_thread;
-	std::vector<std::pair<std::shared_ptr<std::atomic<bool>>, std::jthread>> clients;
+	std::vector<std::pair<std::shared_ptr<bool>, std::jthread>> clients;
 
 	std::mutex client_mutex;
 	std::condition_variable client_cv;
