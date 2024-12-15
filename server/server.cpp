@@ -21,7 +21,9 @@ namespace API {
 		if (it == http.headers.end()) {
 			return false;
 		}
-		return it->second == "0d067646-9ca4-43ee-b32d-0d15d9cd6e67";
+		const char* pass = std::getenv("AUTH_KEY");
+		if (pass == nullptr) return false;
+		return it->second == pass;
 	}
 
 	void connection_handler(int client_socket_fd, std::shared_ptr<Notifications> notifications) {
