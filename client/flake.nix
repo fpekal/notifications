@@ -14,11 +14,16 @@
 			name = "notifications-client";
 			src = ./.;
 
-			nativeBuildInputs = [ pkgs.gnumake ];
+			nativeBuildInputs = [ pkgs.gnumake pkgs.makeWrapper ];
 
 			patchPhase = ''
 			substituteInPlace client.cpp \
 				--replace-fail "/usr/bin/twmnc" "${pkgs.twmn}/bin/twmnc"
+			'';
+
+			fixupPhase = ''
+			wrapProgram $out/bin/notifications_client \
+				--prefix PATH : ${pkgs.twmn}/bin
 			'';
 		};
 	};
