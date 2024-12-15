@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "client": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-oDknBag/lhpaHzO75k+xprsXcPEMMKoZUdLG6yaOPlQ=",
+        "path": "/nix/store/55hrqszdzra32dvfrr9lvk4n7g6h7gda-source/client",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/55hrqszdzra32dvfrr9lvk4n7g6h7gda-source/client",
+        "type": "path"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1734298836,
+        "narHash": "sha256-inc53b+Ej1jG0ThZuYdMigA/ACWd7eOt3uSKuXtULqo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d2fdb4818da7e5eeef7f1f2e7e9a46ee4ce1fa7d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "client": "client",
+        "nixpkgs": "nixpkgs",
+        "server": "server"
+      }
+    },
+    "server": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-aNOuXh/g7j7tRkVIEl8lSkIpQFQDeJWAIFZ5yidiTfo=",
+        "path": "/nix/store/55hrqszdzra32dvfrr9lvk4n7g6h7gda-source/server",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/55hrqszdzra32dvfrr9lvk4n7g6h7gda-source/server",
+        "type": "path"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
