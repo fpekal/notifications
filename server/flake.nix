@@ -17,5 +17,7 @@
 			buildInputs = [ pkgs.nlohmann_json ];
 			nativeBuildInputs = [ pkgs.gnumake ];
 		};
+
+		nixosModules.default = import ./module.nix;
 	};
 }

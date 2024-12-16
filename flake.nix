@@ -25,5 +25,9 @@
 			notifications-server = self.packages.x86_64-linux.notifications-server;
 			notifications-client = self.packages.x86_64-linux.notifications-client;
 		};
+
+		nixosModules.default = {
+			imports = [ server.nixosModules.default ];
+		};
 	};
 }
