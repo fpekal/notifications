@@ -17,8 +17,8 @@
 		systemd.services = pkgs.lib.mkIf cfg.enable {
 			notifications-server = {
 				enable = true;
-				script = "${pkgs.notifications-server}/bin/notifications-server";
-				wanterBy = [ "multi-user.target" ];
+				script = "${pkgs.notifications-server}/bin/notifications_server";
+				wantedBy = [ "multi-user.target" ];
 				after = [ "network-online.target" ];
 			};
 		};
