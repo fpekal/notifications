@@ -2,7 +2,7 @@
 {
 	options = {
 		services.notifications-server = {
-			enabled = pkgs.lib.mkOption {
+			enable = pkgs.lib.mkOption {
 				type = pkgs.lib.types.bool;
 				default = false;
 				description = "Enable notifications server";
@@ -14,9 +14,9 @@
 	let
 		cfg = config.services.notifications-server;
 	in {
-		systemd.services = pkgs.lib.mkIf cfg.enabled {
+		systemd.services = pkgs.lib.mkIf cfg.enable {
 			notifications-server = {
-				enabled = true;
+				enable = true;
 				script = "${pkgs.notifications-server}/bin/notifications-server";
 				wanterBy = [ "multi-user.target" ];
 				after = [ "network-online.target" ];
