@@ -9,11 +9,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-i6JTXR5mmeuTUq1TkLwOtZQaKSrpBNgXU3ROqQ7FEys=",
-        "path": "./client",
+        "path": "/nix/store/6r8faly4izfiljbkirac4cd4gskfqi2v-source/client",
         "type": "path"
       },
       "original": {
-        "path": "./client",
+        "path": "/nix/store/6r8faly4izfiljbkirac4cd4gskfqi2v-source/client",
         "type": "path"
       }
     },
@@ -48,11 +48,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-HM2XE50HIBE/h+peu6PJGgIQO+v8jIqzvKISFdD5Qb8=",
-        "path": "./server",
+        "path": "/nix/store/6r8faly4izfiljbkirac4cd4gskfqi2v-source/server",
         "type": "path"
       },
       "original": {
-        "path": "./server",
+        "path": "/nix/store/6r8faly4izfiljbkirac4cd4gskfqi2v-source/server",
         "type": "path"
       }
     }
